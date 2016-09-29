@@ -3,6 +3,7 @@
 float angulo, aspecto;			 //gluPerspective
 float zNear = 0.1, zFar = 500;   //gluPerspective
 int posX = 0, posY = 0, posZ = 400; //Parâmetros da gluLookAt
+int transladaX = 0, transladaY = 0, transladaZ = 0;
 
 void visualizacao() {
 	glMatrixMode(GL_PROJECTION);	//Matriz de projeção
@@ -19,9 +20,35 @@ void teclado(unsigned char key, int x, int y) {
 	switch (key) {
 	case 27:	//Tecla ESC
 		exit(0); break;
+
+	case 'a':
+		//move para a direita
+		transladaX = +1.5;
+		transladaY = 0;
+		break;
+	case 'd':
+		//move para a esquerda
+		transladaX = -1.5;
+		transladaY = 0;
+		break;
+	case 's':
+		//move para a cima
+		transladaY = +1.5;
+		transladaX = 0;
+		break;
+	case 'w':
+		//move para baixo
+		transladaY = -1.5;
+		transladaX = 0;
+		break;
 	}
 	visualizacao();			//Método que aplica os novos parâmetros
 	glutPostRedisplay();	//Força redesenho
+}
+
+void teclasEspeciais(int tecla, int x, int y){
+
+
 }
 
 void tamanhoJanela(int w, int h) { //w: width (comprimento)|h: height (altura)
@@ -43,8 +70,10 @@ void cubo(){
 }
 
 void triangulo(){
-	glBegin(GL_TRIANGLES);
 
+	glPopMatrix();
+	glTranslatef(transladaX, transladaY, transladaZ);
+	glBegin(GL_TRIANGLES);
 	/*###  AED ##*/
 	glColor3f(1.0f, 0.0f, 0.0f);
 	glVertex3i(0, 50, 0);
@@ -77,7 +106,7 @@ void triangulo(){
 	glColor3f(0.0f, 1.0f, 0.0f);
 	glVertex3i(-30, -20, 0);
 	glEnd();
-
+	glPushMatrix();
 }
 
 void desenha() {
@@ -96,6 +125,7 @@ int main(int argc, char** argv) {
 	angulo = 45;	//Campo de visão (eixo y) inicial é de 45 graus
 	glutDisplayFunc(desenha);		//Função callback de redesenho
 	glutReshapeFunc(tamanhoJanela);	//Callback quando tamanho janela alterado
-	glutKeyboardFunc(teclado);		//Callback para tratamento de teclado
+	glutKeyboardFunc(&teclado);		//Callback para tratamento de teclado
+	glutSpecialFunc(&teclasEspeciais); 
 	glutMainLoop();					//Loop do GLUT
 }

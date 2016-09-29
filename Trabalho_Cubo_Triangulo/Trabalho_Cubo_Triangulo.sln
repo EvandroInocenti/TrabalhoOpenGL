@@ -12,8 +12,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D86BB5CC-DADC-4A55-9319-82FBD161E99A}.Debug|Win32.ActiveCfg = Release|Win32
-		{D86BB5CC-DADC-4A55-9319-82FBD161E99A}.Release|Win32.ActiveCfg = Release|Win32
-		{D86BB5CC-DADC-4A55-9319-82FBD161E99A}.Release|Win32.Build.0 = Release|Win32
+		{D86BB5CC-DADC-4A55-9319-82FBD161E99A}.Release|Win32.ActiveCfg = Debug|Win32
+		{D86BB5CC-DADC-4A55-9319-82FBD161E99A}.Release|Win32.Build.0 = Debug|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
